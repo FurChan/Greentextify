@@ -35,4 +35,4 @@ greentextTextNodes();
 
 setInterval(function(){
     greentextTextNodes();
-},1000); //change 500 to the time in MS to wait before each run.
+},1000);
