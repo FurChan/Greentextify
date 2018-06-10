@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name         Greentextify
-// @require     https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js
+// @require      https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js
+// @require      http://code.jquery.com/jquery-1.9.1.js
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Bring greentext everywhere you browse
@@ -31,3 +32,7 @@ function greentextTextNodes(){
 }
 
 greentextTextNodes();
+
+setInterval(function(){
+    greentextTextNodes();
+},1000); //change 500 to the time in MS to wait before each run.
