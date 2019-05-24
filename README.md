@@ -1,1 +1,1 @@
-# Greentextifies all websites.
+# Greentextifies Google Docs.
