@@ -1,34 +1,26 @@
 // ==UserScript==
-// @name         Greentextify
-// @require      https://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js
+// @name         Greentextify Docs
 // @require      http://code.jquery.com/jquery-1.9.1.js
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Bring greentext everywhere you browse
+// @description  Bring greentext to Google Chrome
 // @author       ToothAndScale
-// @match        https://userscripts-mirror.org/scripts/review/287701
 // @grant        none
-// @include      *
+// @include      https://docs.google.com/*
 // ==/UserScript==
 
-function applyGreentext(i,s){
-    Zepto(s).wrap('<mark class="greentexted" style="background-color: inherit; color: #789922;"></div>')
-}
+function greentextTextNodes() {
+	var container = document.getElementsByClassName('kix-paragraphrenderer');
 
-function isTextNode(){
-    return this.nodeType===3
-}
-
-function greentextChild(){
-    return Zepto(this).parent().is("mark.greentexted")
-}
-
-function isGreentext(){
-    return Zepto(this).text().trim().substr(0,1)===">"
-}
-
-function greentextTextNodes(){
-    Zepto("*").contents().filter(isTextNode).not(greentextChild).filter(isGreentext).map(applyGreentext)
+	for(let i = 0; i < container.length; i++){
+        var wordnodes = container[i].getElementsByClassName('kix-wordhtmlgenerator-word-node');
+        console.log(wordnodes[0].textContent);
+        if(wordnodes[0].textContent.charAt(0) == '>') {
+            for(let x = 0; x < wordnodes.length; x++){
+                wordnodes[x].style.color = "#789922";
+            }
+        }
+	}
 }
 
 greentextTextNodes();
